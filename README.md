@@ -38,10 +38,10 @@ Django 2.2.10, Django REST framework.
 - Права доступа: `Администратор`
 - URL: `/api/survey/<survey_id>/`
 - Тело запроса: `name`, `end_date`, `description`
-#### 4- Удаление опросов (DELETE):
+##### 4- Удаление опросов (DELETE):
 - Права доступа: `Администратор`
 - URL: `/api/survey/<survey_id>/`
-#### 5- Добавление вопросов к опросу (POST)
+##### 5- Добавление вопросов к опросу (POST)
 - Права доступа: `Администратор`
 - URL: `/api/question/`
 - Тело запроса: `text`*, `type`(TEXT or SINGLE or MULTIPLE), `survey`*, `options`(Список текстов для добавления опций к вопросу)
