@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  postgresql:
+    image: postgres
+    container_name: surveysms_postgresql_1
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - localnet
+
+  backend:
+    container_name: surveysms_backend_1
+    build: .
+    command: bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:5001"
+    volumes:
+      - .:/app
+    expose:
+      - 5001
+    ports:
+      - "5001:5001"
+    networks:
+      - localnet
+    links:
+      - postgresql
+
+  nginx:
+    image: nginx:1.15.12-alpine
+    container_name: surveysms_nginx_1
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    links:
+      - backend
+    networks:
+      - localnet
+
+networks:
+  localnet:
+    driver: bridge
