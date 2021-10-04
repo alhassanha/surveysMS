@@ -59,20 +59,19 @@ class SurveyViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True)
     def submit(self, request, pk=None):
         survey = self.get_object()
-        if 'participant' in request.data:
+        if request.user.is_authenticated and None != request.user.participant:
+            participant = request.user.participant
+        elif 'participant' in request.data:
             participant_id = request.data.get('participant')
             participant, created = Participant.objects.get_or_create(id=participant_id)
             if request.user.is_authenticated:
                 participant.user = request.user
                 participant.save()
         else:
-            if request.user.is_authenticated and None != request.user.participant:
-                participant = request.user.participant
-            else:
-                return Response(
-                    {"detail": "no participant id was provided"},
-                    status.HTTP_400_BAD_REQUEST
-                )
+            return Response(
+                {"detail": "no participant id was provided"},
+                status.HTTP_400_BAD_REQUEST
+            )
         answers = request.data.get('answers', [])
         for answer in answers:
             if 'question' not in answer:
