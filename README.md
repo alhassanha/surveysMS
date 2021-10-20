@@ -26,7 +26,7 @@ Django 2.2.10, Django REST framework.
     - `docker-compose exec backend python manage.py migrate`
 5. Создать суперпользователя:
     - `docker-compose run backend python manage.py createsuperuser`
-6. Перезапустить контейнеры docker:
+6. Перезапустить сервисы:
     - `docker-compose restart`
 7. Добавить surveysms.local в файл 'hosts' (в linux: /etc/hosts), чтобы получить доступ к проекту на http://surveysms.local:8080, или использовать домашний домен http://localhost:8080.
 ## Документация по API
