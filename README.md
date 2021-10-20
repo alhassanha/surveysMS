@@ -16,15 +16,17 @@ Django 2.2.10, Django REST framework.
 
 ## Установка:
 1. Клонировать репозиторий
-2. Создать и настроить контейнкров Docker:
+2. настройка python для виртуальных окружений (pipenv)
+    - 'pipenv --python 3.7'
+3. Создать и настроить контейнкров Docker:
     - 'docker-compose build'
     - 'docker-compose up -d'
-3. Проводить миграции:
+4. Проводить миграции:
     - 'docker-compose run backend python manage.py makemigrations'
     - 'docker-compose run backend python manage.py migrate'
-4. Создать суперпользователя:
+5. Создать суперпользователя:
     - 'docker-compose run backend python manage.py createsuperuser'
-5. Добавить surveysms.local в файл 'hosts' (в linux: /etc/hosts), чтобы получить доступ к проекту на http://surveysms.local:8080, или использовать домашний домен http://localhost:8080.
+6. Добавить surveysms.local в файл 'hosts' (в linux: /etc/hosts), чтобы получить доступ к проекту на http://surveysms.local:8080, или использовать домашний домен http://localhost:8080.
 ## Документация по API
 ### Функционал для администратора системы:
 ##### 1- Алгоритм авторизации пользователей:

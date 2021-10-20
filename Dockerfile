@@ -11,3 +11,4 @@ RUN pip install pipenv
 RUN pipenv install -r requirements.txt
 
 COPY . /app/
+RUN chmod -R 777 ./db
