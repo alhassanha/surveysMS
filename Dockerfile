@@ -6,9 +6,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY ./requirements.txt /app/
-COPY Pipfile /app/
-RUN pip install pipenv
+COPY Pipfile Pipfile.lock /app/
+RUN pip install pipenv && pipenv install --system
 RUN pipenv install -r requirements.txt
 
 COPY . /app/
-RUN chmod -R 777 ./db

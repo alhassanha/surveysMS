@@ -1,5 +1,4 @@
 db/*
-!db/.gitkeep
 
 mainapp/migrations/*
 !mainapp/migrations/.gitkeep
